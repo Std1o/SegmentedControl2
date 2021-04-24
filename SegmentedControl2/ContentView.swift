@@ -1,21 +1,29 @@
-//
-//  ContentView.swift
-//  SegmentedControl2
-//
-//  Created by Илья on 24.04.2021.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
+  
+  @State var index = 0
+  let model = DataModel()
+  
+  var body: some View {
+    VStack(spacing: 0) {
+    
+      MySegmentControl(index: self.$index)
+        .environmentObject(self.model)
+        .frame(height: 30)
+      Spacer()
+        .frame(height: 5)
+      Color.black.opacity(0.15)
+        .frame(height: 1)
+      MyPageControlView(index: self.$index)
+        .environmentObject(self.model)
+        .frame(width: APPWidth)
     }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
